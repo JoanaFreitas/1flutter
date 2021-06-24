@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './questao.dart';
+import './resposta.dart';
 main() => runApp(PerguntasApp());
 
 @override
@@ -10,7 +11,7 @@ class _PerguntasAppState extends State<PerguntasApp> {
     'Qual é o seu animal preferido?'
   ];
 
-  void _Responder() {
+  void _responder() {
     setState(() {
       _perguntaSelecionada++;
     });
@@ -26,18 +27,9 @@ class _PerguntasAppState extends State<PerguntasApp> {
         body: Column(
           children: [
             Questao(perguntas[_perguntaSelecionada]),
-            ElevatedButton(
-              child: Text('Resposta1'),
-              onPressed: _Responder,
-            ),
-            ElevatedButton(
-              child: Text('Resposta2'),
-              onPressed: _Responder,
-            ),
-            ElevatedButton(
-              child: Text('Resposta3'),
-              onPressed: _Responder,
-            ),
+            Resposta('Resposta1',_responder),
+            Resposta('Resposta2',_responder),
+            Resposta('Resposta3',_responder),
           ],
         ),
       ),
@@ -50,3 +42,4 @@ class PerguntasApp extends StatefulWidget {
     return _PerguntasAppState();
   }
 }
+//aula45
