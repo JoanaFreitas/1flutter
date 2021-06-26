@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import './questao.dart';
 import './resposta.dart';
@@ -7,7 +5,7 @@ import './resposta.dart';
 class Questionario extends StatelessWidget {
   final List<Map<String, Object>> perguntas;
   final int perguntaSelecionada;
-  final Function() quandoResponder;
+  final void Function(int) quandoResponder;
 
   Questionario({
     required this.perguntas,
@@ -20,14 +18,19 @@ class Questionario extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-     List<String> respostas = temPerguntaSelecionada
-        ? perguntas[perguntaSelecionada].cast()['resposta']
-        : [];
+     List<Map<String,dynamic>> respostas = temPerguntaSelecionada//mudei o tipo objetopara dynamic aqui"erro de tipo int
+        ? perguntas[perguntaSelecionada].cast()['respostas']
+        : null;
 
     return Column(
-      children: [
+      children: <Widget>[
         Questao(perguntas[perguntaSelecionada]['texto']),
-        ...respostas.map((t) => Resposta(t, quandoResponder)).toList(),
+        ...respostas.map((resp){
+          return Resposta(
+            resp['texto'],
+        () =>quandoResponder(resp['pontuacao']), 
+        );
+         }) .toList(),
       ],
     );
   }
