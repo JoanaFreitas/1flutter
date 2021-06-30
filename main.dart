@@ -25,7 +25,7 @@ class _PerguntasAppState extends State<PerguntasApp> {
         {'texto': 'Cobra', 'pontuacao': 5},
         {'texto': 'Elefante', 'pontuacao': 3},
         {'texto': 'Leao', 'pontuacao': 1},
-      ],
+      ],    
     },
     {
       'texto': 'Qual é a sua estação favorita?',
